@@ -1,28 +1,28 @@
 package com.example.demo.interceptors;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.lang.reflect.Method;
+import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        try {
-            System.out.println(handler);
-//            if (!clazz.isAnnotationPresent(Auth.class)) {
-
-//            }
-            System.out.println("1 - preHandle() : Before sending request to the Controller");
-            System.out.println("Method Type: " + request.getMethod());
-            System.out.println("Request URL: " + request.getRequestURI());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        if (handler.getClass() != HandlerMethod.class) {
+            return true;
         }
+        HandlerMethod hm = (HandlerMethod) handler;
+        Method method = hm.getMethod();
+        if (method.isAnnotationPresent(Auth.class)) {
+            System.out.println(method.getAnnotation(Auth.class).requiredRoles());
+        }
+        System.out.println("=============");
+        System.out.println("INTERCEPTOR");
+        System.out.println("*************");
         return true;
     }
 }

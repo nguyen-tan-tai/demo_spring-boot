@@ -6,7 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class User extends BaseEntity {
+public class Product extends BaseEntity {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -14,8 +15,8 @@ public class User extends BaseEntity {
     @Column(length = 255, nullable = false)
     private String name;
 
-    @Column(length = 255, nullable = false)
-    private String email;
+    @Column(nullable = false)
+    private Long stock;
 
     public Long getId() {
         return id;
@@ -33,11 +34,11 @@ public class User extends BaseEntity {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public Long getStock() {
+        return stock;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStock(Long stock) {
+        this.stock = stock;
     }
 }

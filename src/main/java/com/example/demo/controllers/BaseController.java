@@ -16,6 +16,10 @@ public class BaseController {
         return (String) this.httpRequest.getAttribute(CUSTOM_REQUEST_ATTRIBUTE.TRACE_ID.getTraceId());
     }
 
+    public ResponseEntity<?> ok() {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     public ResponseEntity<?> ok(BaseResponse response) {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
