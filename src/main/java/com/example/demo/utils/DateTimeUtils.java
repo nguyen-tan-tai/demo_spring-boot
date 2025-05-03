@@ -2,9 +2,11 @@ package com.example.demo.utils;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 public class DateTimeUtils {
+
     private static final DateTimeFormatter ISO_OFFSET_DATE_TIME = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
     private static final DateTimeFormatter ISO_LOCAL_DATE_TIME = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
@@ -22,5 +24,9 @@ public class DateTimeUtils {
 
     public String toIsoLocalDateTimeString(OffsetDateTime dt, ZoneId zoneId) {
         return dt.atZoneSameInstant(zoneId).format(ISO_LOCAL_DATE_TIME);
+    }
+
+    public static String nowOffsetDateTimeString() {
+        return OffsetDateTime.now(ZoneOffset.UTC).format(ISO_OFFSET_DATE_TIME);
     }
 }
