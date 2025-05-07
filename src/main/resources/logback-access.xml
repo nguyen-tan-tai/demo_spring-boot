@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashAccessEncoder">
+            <pattern>combined</pattern>
+            <customFields>{"access_log": "1"}</customFields>
+            <fieldNames>
+                <fieldsRequestHeaders>request_headers</fieldsRequestHeaders>
+                <fieldsResponseHeaders>response_headers</fieldsResponseHeaders>
+            </fieldNames>
+        </encoder>
+    </appender>
+    <appender-ref ref="console" />
+</configuration>
