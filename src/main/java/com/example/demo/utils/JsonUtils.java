@@ -20,7 +20,7 @@ public class JsonUtils {
         try {
             return om.readValue(json, clazz);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
@@ -28,7 +28,7 @@ public class JsonUtils {
         try {
             return om.readValue(json, clazz);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 }
