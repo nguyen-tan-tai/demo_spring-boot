@@ -1,3 +1,5 @@
+TRUNCATE TABLE products;
+
 INSERT INTO "products" ("prd_id", "prd_name", "prd_cat", "prd_dept", "is_active", "updated_at") VALUES
     (50, 'Costume Amin', 8, '3', 'true', '2025-05-13 14:24:40.230301+00'),
     (51, 'Athletic Shoes Trick', 4, '1', 'true', '2025-05-13 14:24:40.230301+00'),
@@ -19,4 +21,16 @@ INSERT INTO "products" ("prd_id", "prd_name", "prd_cat", "prd_dept", "is_active"
     (67, 'Underwear Arano', 7, '3', 'true', '2025-05-13 14:24:40.230301+00'),
     (68, 'Hoodie Dexel', 2, '3', 'true', '2025-05-13 14:24:40.230301+00'),
     (69, 'Shampoo Laidy', 3, '3', 'true', '2025-05-13 14:24:40.230301+00'),
-    (70, 'Tie Clip Nenno', 9, '3', 'true', '2025-05-13 14:24:40.230301+00');
+    (70, 'Tie Clip Nenno', 9, '3', 'true', '2025-05-13 14:24:40.230301+00'),
+    (71, 'Backpack Arnhild', 6, '2', 'true', '2025-05-13 14:24:40.230301+00'),
+    (72, 'Jumpsuit Madame', 2, '2', 'true', '2025-05-13 14:24:40.230301+00'),
+    (73, 'Coat Isto', 2, '2', 'true', '2025-05-13 14:24:40.230301+00'),
+    (74, 'Cuffs Pepper', 9, '3', 'true', '2025-05-13 14:24:40.230301+00'),
+    (75, 'Jeans Madame', 2, '1', 'true', '2025-05-13 14:24:40.230301+00'),
+    (76, 'Athletic Shoes Nady', 4, '1', 'true', '2025-05-13 14:24:40.230301+00'),
+    (77, 'Capris Bienchen', 2, '1', 'true', '2025-05-13 14:24:40.230301+00'),
+    (78, 'Wedges Kiff', 4, '1', 'true', '2025-05-13 14:24:40.230301+00'),
+    (79, 'Ring Adria', 9, '1', 'true', '2025-05-13 14:24:40.230301+00'),
+    (80, 'Boxer Cylias', 2, '2', 'true', '2025-05-13 14:24:40.230301+00');
+
+SELECT setval('products_cat_id_seq', (SELECT max(prd_id) FROM products));

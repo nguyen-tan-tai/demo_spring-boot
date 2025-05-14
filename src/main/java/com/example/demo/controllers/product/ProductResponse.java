@@ -13,13 +13,13 @@ public class ProductResponse extends BaseResponse {
         this.product = product;
     }
 
-    @JsonProperty(value = "id", index = 1)
-    public Long getId() {
+    @JsonProperty(value = "prdId", index = 1)
+    public Long getPrdId() {
         return this.product.getPrdId();
     }
 
-    @JsonProperty(value = "name", index = 2)
-    public String getName() {
+    @JsonProperty(value = "prdName", index = 2)
+    public String getPrdName() {
         return this.product.getPrdName();
     }
 

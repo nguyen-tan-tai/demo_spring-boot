@@ -17,8 +17,8 @@ public class PriceQuote extends BaseEntity {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "pq_id")
+    private Long priceQuoteId;
 
     @Column(name = "prd_id", nullable = false)
     private Long prdId;
@@ -33,12 +33,12 @@ public class PriceQuote extends BaseEntity {
     @JoinColumn(name = "prd_id", nullable = false, insertable = false, updatable = false)
     private Product product;
 
-    public Long getId() {
-        return id;
+    public Long getPriceQuoteId() {
+        return priceQuoteId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPriceQuoteId(Long priceQuoteId) {
+        this.priceQuoteId = priceQuoteId;
     }
 
     public Long getPrdId() {
