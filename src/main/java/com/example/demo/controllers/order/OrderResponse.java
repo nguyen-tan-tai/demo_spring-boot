@@ -20,6 +20,9 @@ public class OrderResponse extends BaseResponse {
 
     @JsonProperty(value = "createdAt", index = 5)
     public String getCreatedAt() {
+        if (this.order == null) {
+            return null;
+        }
         return DateTimeUtils.toIsoOffsetDateTimeString(this.order.getCreatedAt());
     }
 }

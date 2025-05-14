@@ -1,8 +1,8 @@
-DROP SEQUENCE IF EXISTS products_cat_id_seq;
-CREATE SEQUENCE products_cat_id_seq;
+DROP SEQUENCE IF EXISTS products_prd_id_seq;
+CREATE SEQUENCE products_prd_id_seq;
 
 CREATE TABLE IF NOT EXISTS "products" (
-    "prd_id" BIGINT NOT NULL DEFAULT nextval('products_cat_id_seq'),
+    "prd_id" BIGINT NOT NULL DEFAULT nextval('products_prd_id_seq'),
     "prd_name" VARCHAR(255) NOT NULL,
     "prd_cat" INTEGER NOT NULL,
     "prd_dept" VARCHAR(255) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS "products" (
     "updated_at" TIMESTAMPTZ NOT NULL,
     PRIMARY KEY ("prd_id")
 );
-ALTER SEQUENCE products_cat_id_seq
+ALTER SEQUENCE products_prd_id_seq
 OWNED BY products.prd_id;
 
 DELETE FROM "products";

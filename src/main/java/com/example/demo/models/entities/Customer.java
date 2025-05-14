@@ -3,7 +3,9 @@ package com.example.demo.models.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
 
@@ -11,7 +13,8 @@ import java.time.OffsetDateTime;
 @Table(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customers_seq_generator")
+    @SequenceGenerator(name = "customers_seq_generator", sequenceName = "customers_cat_id_seq", allocationSize = 1)
     @Column(name = "cust_id")
     private Long custId;
 

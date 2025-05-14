@@ -5,9 +5,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -19,7 +21,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Product extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "products_seq_generator")
+    @SequenceGenerator(name = "products_seq_generator", sequenceName = "products_prd_id_seq", allocationSize = 1)
     @Column(name = "prd_id")
     private Long prdId;
 

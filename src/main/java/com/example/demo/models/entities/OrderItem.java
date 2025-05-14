@@ -3,7 +3,9 @@ package com.example.demo.models.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
 
@@ -12,15 +14,19 @@ import java.time.OffsetDateTime;
 public class OrderItem extends BaseEntity {
 
     @Id
-    @GeneratedValue
-    @Column(name = "ord_item_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_items_seq_generator")
+    @SequenceGenerator(name = "order_items_seq_generator", sequenceName = "order_items_cat_id_seq", allocationSize = 1)
+    @Column(name = "order_item_id")
     private Long orderItemId;
 
     @Column(name = "prd_id", nullable = false)
     private Long prdId;
 
+    @Column(name = "order_id", nullable = false)
+    private Long orderId;
+
     @Column(name = "prd_name", length = 255, nullable = false)
-    private Long prdName;
+    private String prdName;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
@@ -28,8 +34,8 @@ public class OrderItem extends BaseEntity {
     @Column(name = "price", length = 255, nullable = false)
     private String price;
 
-    @Column(name = "updated_at", nullable = false)
-    private OffsetDateTime updatedAt;
+    @Column(name = "created_at", nullable = false)
+    private OffsetDateTime createdAt;
 
     public Long getOrderItemId() {
         return orderItemId;
@@ -39,12 +45,28 @@ public class OrderItem extends BaseEntity {
         this.orderItemId = orderItemId;
     }
 
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
     public Long getPrdId() {
         return prdId;
     }
 
     public void setPrdId(Long prdId) {
         this.prdId = prdId;
+    }
+
+    public String getPrdName() {
+        return prdName;
+    }
+
+    public void setPrdName(String prdName) {
+        this.prdName = prdName;
     }
 
     public Integer getQuantity() {
@@ -63,11 +85,11 @@ public class OrderItem extends BaseEntity {
         this.price = price;
     }
 
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
