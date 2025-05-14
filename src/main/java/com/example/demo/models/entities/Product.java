@@ -1,7 +1,9 @@
 package com.example.demo.models.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -36,12 +38,11 @@ public class Product extends BaseEntity {
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "prd_cat", referencedColumnName = "cat_id", insertable = false, updatable = false)
     private Category category;
 
-    @OneToOne
-    @JoinColumn(name = "prd_id", referencedColumnName = "prd_id", insertable = false, updatable = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false, mappedBy = "product")
     private PriceQuote priceQuote;
 
     public static enum DEPARTMENT {

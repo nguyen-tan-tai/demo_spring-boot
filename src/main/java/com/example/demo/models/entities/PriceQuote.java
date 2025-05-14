@@ -3,6 +3,7 @@ package com.example.demo.models.entities;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -11,7 +12,7 @@ import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "prices")
+@Table(name = "price_quotes")
 public class PriceQuote extends BaseEntity {
 
     @Id
@@ -28,8 +29,8 @@ public class PriceQuote extends BaseEntity {
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
 
-    @OneToOne
-    @JoinColumn(name = "prd_id", referencedColumnName = "prd_id", insertable = false, updatable = false)
+    @OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "prd_id", nullable = false, insertable = false, updatable = false)
     private Product product;
 
     public Long getId() {
@@ -62,13 +63,5 @@ public class PriceQuote extends BaseEntity {
 
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 }
