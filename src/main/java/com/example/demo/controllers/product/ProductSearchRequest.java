@@ -6,21 +6,21 @@ import org.springframework.data.domain.Sort;
 
 public class ProductSearchRequest extends BasePagingRequest {
 
-    private String name;
+    private String productName;
 
     public String getName() {
-        if (StringUtils.isEmpty(name)) {
+        if (StringUtils.isEmpty(productName)) {
             return null;
         }
-        return name;
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String productName) {
+        this.productName = productName;
     }
 
     @Override
     public Sort defaultSort() {
-        return Sort.by("id").ascending();
+        return Sort.by("prd_id").ascending();
     }
 }

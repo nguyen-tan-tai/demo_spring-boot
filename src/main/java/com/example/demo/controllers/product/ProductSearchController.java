@@ -18,7 +18,6 @@ public class ProductSearchController extends BaseController {
     @GetMapping("/products")
     public ResponseEntity<?> search(ProductSearchRequest request) {
         List<Product> products = productRepository.searchByNameWithPagination(request.getName(), request.toPageable());
-        // List<Product> products = productRepository.findAllByNameContains(request.getName(), request.toPageable());
         return ok(new ProductSearchResponse(products));
     }
 }

@@ -8,8 +8,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProductRepository extends BaseRepository<Product, Long> {
 
-    @Query(value = "SELECT p.id, p.name, p.stock FROM product p WHERE (:name IS NULL OR p.name LIKE %:name%)", nativeQuery = true)
-    List<Product> searchByNameWithPagination(@Param("name") String name, Pageable pageable);
-
-    List<Product> findAllByNameContains(String name, Pageable pageable);
+    @Query(value = "SELECT p.prd_id as product_prd_id, p.prd_name, p.prd_cat, p.prd_dept, p.is_active, p.updated_at, "
+            + "c.cat_id, c.cat_name, c.updated_at AS c_updated_at, "
+            + "q.id, q.prd_id, q.price, q.created_at "
+            + "FROM products p "
+            + "JOIN categories c ON c.cat_id = p.prd_cat "
+            + "JOIN prices q ON q.prd_id = p.prd_id "
+            + "WHERE (:prd_name IS NULL OR p.prd_name LIKE '%:prd_name%')", nativeQuery = true)
+    public List<Product> searchByNameWithPagination(@Param("prd_name") String prdName, Pageable pageable);
 }
