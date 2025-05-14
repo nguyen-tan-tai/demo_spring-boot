@@ -1,6 +1,7 @@
-package com.example.demo.controllers.product;
+package com.example.demo.controllers.product.search;
 
 import com.example.demo.controllers.BaseListResponse;
+import com.example.demo.controllers.product.ProductResponse;
 import com.example.demo.models.entities.Product;
 import org.springframework.data.domain.Page;
 

@@ -1,4 +1,4 @@
-package com.example.demo.controllers.product;
+package com.example.demo.controllers.product.search;
 
 import com.example.demo.controllers.BasePagingRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -8,7 +8,7 @@ public class ProductSearchRequest extends BasePagingRequest {
 
     private String productName;
 
-    public String getName() {
+    public String getProductName() {
         if (StringUtils.isEmpty(productName)) {
             return null;
         }
@@ -21,6 +21,6 @@ public class ProductSearchRequest extends BasePagingRequest {
 
     @Override
     public Sort defaultSort() {
-        return Sort.by("prd_id").ascending();
+        return Sort.by("prdId").ascending();
     }
 }

@@ -21,7 +21,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             System.out.println(method.getAnnotation(Auth.class).requiredRoles());
         }
         System.out.println("=============");
-        System.out.println("INTERCEPTOR");
+        System.out.println("INTERCEPTOR " + request.getRequestURI());
         System.out.println("*************");
         return true;
     }

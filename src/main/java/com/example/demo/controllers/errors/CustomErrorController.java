@@ -1,8 +1,6 @@
 package com.example.demo.controllers.errors;
 
 import com.example.demo.controllers.BaseController;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,8 +12,7 @@ public class CustomErrorController extends BaseController implements ErrorContro
 
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<?> handleException(Throwable e) {
-        StringWriter errors = new StringWriter();
-        e.printStackTrace(new PrintWriter(errors));
+        e.printStackTrace();
         return serverError(new ErrorResponse(ERROR_CODE.SERVER_ERROR, this.getTraceId()));
     }
 

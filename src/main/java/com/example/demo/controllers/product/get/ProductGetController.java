@@ -1,6 +1,7 @@
-package com.example.demo.controllers.product;
+package com.example.demo.controllers.product.get;
 
 import com.example.demo.controllers.BaseController;
+import com.example.demo.controllers.product.ProductResponse;
 import com.example.demo.models.entities.Product;
 import com.example.demo.models.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
