@@ -1,6 +1,7 @@
 package com.example.demo.controllers.order.place;
 
 import com.example.demo.models.entities.OrderItem;
+import io.swagger.v3.oas.annotations.Hidden;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ public class PlaceOrderRequest {
 
     private List<ItemRequest> items;
 
+    @Hidden
     public List<OrderItem> getItemsAsOrderItems() {
         if (items == null) {
             return new ArrayList<>();
@@ -21,6 +23,7 @@ public class PlaceOrderRequest {
     }
 
     public static class ItemRequest {
+
         private Long prdId;
         private Integer quantity;
         private String price;

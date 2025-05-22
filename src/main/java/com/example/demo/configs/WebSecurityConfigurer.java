@@ -16,6 +16,8 @@ public class WebSecurityConfigurer {
         http.cors(withDefaults());
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/v3/api-docs*/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
                 .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated());

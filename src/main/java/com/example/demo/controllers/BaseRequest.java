@@ -1,5 +1,5 @@
 package com.example.demo.controllers;
 
-public class BaseRequest {
+public interface BaseRequest {
 
 }

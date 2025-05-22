@@ -1,5 +1,6 @@
 package com.example.demo.controllers.errors;
 
+import com.example.demo.commons.exceptions.ResourceNotFoundException;
 import com.example.demo.controllers.BaseController;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,11 @@ public class CustomErrorController extends BaseController implements ErrorContro
 
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<?> handleNotFound(NoResourceFoundException e) {
+        return notFound(new ErrorResponse(ERROR_CODE.NOT_FOUND, this.getTraceId()));
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> handleNotFound(ResourceNotFoundException e) {
         return notFound(new ErrorResponse(ERROR_CODE.NOT_FOUND, this.getTraceId()));
     }
 }
