@@ -22,12 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductSearchController extends BaseController {
 
     @Autowired
+    private ProductSearchRequestValidator validator;
+
+    @Autowired
     private ProductRepository productRepository;
 
     @Operation(summary = "Search product")
     @ApiResponse(responseCode = "200", description = "OK", content = {@Content(schema = @Schema(implementation = ProductResponse.class))})
     @GetMapping("/products")
     public ResponseEntity<?> search(@ParameterObject @Valid ProductSearchRequest request) {
+        validator.validate(request);
         Page<Product> products = productRepository.seach(request.getProductName(), request.toPageable());
         return ok(new ProductSearchResponse(products));
     }
